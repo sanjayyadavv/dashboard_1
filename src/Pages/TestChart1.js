@@ -1,132 +1,33 @@
-import React, {useState, useEffect} from "react";
-import { Line, Bar, Pie } from "react-chartjs-2";
+import React from 'react';
+import Highcharts from 'highcharts';
 
-import {
-  Container, Row, Col, Form, Input, Button, Navbar, Nav,
-  NavbarBrand, NavLink, NavItem, UncontrolledDropdown,
-  DropdownToggle, DropdownMenu, DropdownItem
-} from 'reactstrap';
-import "bootstrap/dist/css/bootstrap.min.css";
+const TestChart1 = () => (
+  <div className="app">
+    {/* <HighchartsProvider Highcharts={Highcharts}>
+      <HighchartsChart plotOptions={plotOptions}>
+        <Chart />
 
+        <Title>Solar Employment Growth by Sector, 2010-2016</Title>
 
+        <Subtitle>Source: thesolarfoundation.com</Subtitle>
 
-const TestChart1 =()=> {
-  const labels = ["January", "February", "March", "April", "May", "June"];
-  
-  const data_array = [0];
+        <Legend layout="vertical" align="right" verticalAlign="middle" />
 
-  const [number,setNumber] = useState(1);
-  const [data1,setData1] = useState([0]);
-  const [yAxisData, setYAxisData] = useState([0])
+        <XAxis>
+          <XAxis.Title>Time</XAxis.Title>
+        </XAxis>
 
-   useEffect(()=>{
-    const interval = setInterval(()=>{
-      //setTheArray(oldArray => [...oldArray, newElement]);
-
-      const min = 1;
-      const max = 100;
-      const rand = min + Math.random() * (max - min);
-    
-      setData1(data1.push( Math.floor(rand)));
-      //setData1( Math.floor(rand))
-      //setData1(data1 => [data1, Math.floor(rand)]);
-
-      setNumber(number+1)
-      setYAxisData(yAxisData.push(data1.length))
-
-      console.log( data1.toString());
-      console.log( yAxisData.toString());
-      
-      
-      //addData(data_live, yAxisData, data1)
-
-    },1000)
-    return () => clearInterval(interval);
-   },[])
-
-const data = {
-
-  labels: [1,2,3,4,5,6,7],
-  
-  datasets: [
-    {
-      label: "Label",
-      fill:true,
-      backgroundColor:'rgba(53, 162, 235, 0.5)',
-      borderColor: 'rgb(53, 162, 235)',
-      data: [0, 10, 5, 2, 20, 30, 45],
-    },
-  ],
-
-};
-
-
-const data_live = {
-  labels: [],
-  
-  datasets: [
-    {
-      label: "Label",
-      fill:true,
-      backgroundColor:'rgba(53, 162, 235, 0.5)',
-      borderColor: 'rgb(53, 162, 235)',
-      data: [],
-    },
-  ],
-};
-
-
-
-
-function addData(chart, label, data) {
-  chart.data.labels.push(label);
-  chart.data.datasets.forEach((dataset) => {
-      dataset.data.push(data);
-  });
-  chart.update();
-}
-
-
-
- const options = {
-  responsive: true,
-  plugins: {
-    title: {
-      display: true,
-      text: 'Line Chart',
-    },
-  },
-};
-
-
-  return (
-    <div
-    style={{
-      display: "block",
-      width: 1200,
-      height:1500,
-      padding: 30
-    }}
-  >
-    <Container>
-      <Row>
-        <Col><h1> ================{data1}  </h1> </Col>
-      </Row>
-      <Row>
-        <Col><h1> ================{yAxisData}  </h1> </Col>
-      </Row>
-      <Row>
-        <Col id="chart"><Bar options={options} data={data_live} /></Col>
-        <Col><Bar options={options} data={data} /></Col>
-        <Col><Line options={options} data={data} /></Col>
-      </Row>
-     
-    </Container>
+        <YAxis>
+          <YAxis.Title>Number of employees</YAxis.Title>
+          <LineSeries name="Installation" data={[43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]} />
+          <LineSeries name="Manufacturing" data={[24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]} />
+          <LineSeries name="Sales & Distribution" data={[11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]} />
+          <LineSeries name="Project Development" data={[null, null, 7988, 12169, 15112, 22452, 34400, 34227]} />
+          <LineSeries name="Other" data={[12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]} />
+        </YAxis>
+      </HighchartsChart>
+    </HighchartsProvider> */}
   </div>
-  );
-};
-
-
-
+);
 
 export default TestChart1;

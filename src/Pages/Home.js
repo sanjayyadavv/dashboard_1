@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Line, Bar, Pie } from "react-chartjs-2";
 
 import {Container, Row, Col, Form, Input, Button, Navbar, Nav,
-  NavbarBrand, NavLink, NavItem, UncontrolledDropdown,
+  NavbarBrand,NavLink_CSS, NavItem, UncontrolledDropdown,
   DropdownToggle, DropdownMenu, DropdownItem, ButtonDropdown, Dropdown
 } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -111,7 +111,6 @@ const InternetData = {
     <div
     style={{
       display: "block",
-      width: 1200,
       height:1500,
       padding: 30
     }}
@@ -127,12 +126,12 @@ const InternetData = {
       </Row>
 
       <Row>
-        <Col md={6} ><ErrorTable/></Col>
-        <Col md={6} ><NetworkUpTime/></Col>
+        <Col  ><ErrorTable/></Col>
+        <Col  ><NetworkUpTime/></Col>
       </Row>
 
       <Row>
-        <Col md={12} ><TemperratureDayHistory/></Col>
+        <Col><TemperratureDayHistory/></Col>
       </Row>
      
     </Container>
