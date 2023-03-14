@@ -3,50 +3,65 @@ import { Line, Bar, Pie } from "react-chartjs-2";
 
 import {
   Container, Row, Col, Form, Input, Button, Navbar, Nav,
-  NavbarBrand, NavLink, NavItem, UncontrolledDropdown,
+  NavbarBrand,NavLink_CSS, NavItem, UncontrolledDropdown,
   DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
+import LineChart from "./LineChart";
+
 
 
 
 const TestChart3 =()=> {
-  const labels = ["January", "February", "March", "April", "May", "June"];
-  
-  const data_array = [0];
 
-  const [number,setNumber] = useState(1);
-  const [data1,setData1] = useState([0]);
-  const [yAxisData, setYAxisData] = useState([0])
+
+  const [number,setNumber] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
+  const [number_2,setNumber_2] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
+
+  const [yAxisDataFinal, setYAxisDataFinal] = useState([0,0,0])
+
 
    useEffect(()=>{
     const interval = setInterval(()=>{
-      //setTheArray(oldArray => [...oldArray, newElement]);
 
-      const min = 1;
+      const min = 7;
       const max = 100;
       const rand = min + Math.random() * (max - min);
-    
-      setData1(data1.push( Math.floor(rand)));
-      //setData1( Math.floor(rand))
-      //setData1(data1 => [data1, Math.floor(rand)]);
+      const rand2 = min + Math.random() * (max - min*4);
 
-      setNumber(number+1)
-      setYAxisData(yAxisData.push(data1.length))
+if(rand >= 30){
+  setYAxisDataFinal([0,number[0],number[1]])
+  const abc1 = number.shift()   
+  const abc2 = number_2.shift() 
+  number.push(Math.floor(rand))
+  number_2.push(0)
+  setNumber(number)
+} else {
+  const abc1 = number.shift()   
+  const abc2 = number_2.shift()
+  number.push(0) 
+  number_2.push(Math.floor(rand))
+  setNumber_2(number_2)
+}
 
-      console.log( data1.toString());
-      console.log( yAxisData.toString());
-      
-      
-      //addData(data_live, yAxisData, data1)
+
+
+// setYAxisDataFinal([0,number[0],number[1]])
+// const abc1 = number.shift()   
+// number.push(Math.floor(rand))
+// setNumber(number)
+
+     
 
     },1000)
     return () => clearInterval(interval);
    },[])
 
-const data = {
 
-  labels: [1,2,3,4,5,6,7],
+
+var data = {
+
+  labels: number,
   
   datasets: [
     {
@@ -54,37 +69,18 @@ const data = {
       fill:true,
       backgroundColor:'rgba(53, 162, 235, 0.5)',
       borderColor: 'rgb(53, 162, 235)',
-      data: [0, 10, 5, 2, 20, 30, 45],
+      data:number,
     },
-  ],
-
-};
-
-
-const data_live = {
-  labels: [],
-  
-  datasets: [
     {
       label: "Label",
       fill:true,
-      backgroundColor:'rgba(53, 162, 235, 0.5)',
+      backgroundColor:'rgba(256, 162, 235, 0.5)',
       borderColor: 'rgb(53, 162, 235)',
-      data: [],
+      data:number_2,
     },
   ],
+
 };
-
-
-
-
-function addData(chart, label, data) {
-  chart.data.labels.push(label);
-  chart.data.datasets.forEach((dataset) => {
-      dataset.data.push(data);
-  });
-  chart.update();
-}
 
 
 
@@ -96,6 +92,14 @@ function addData(chart, label, data) {
       text: 'Line Chart',
     },
   },
+  scales: {
+    x: {
+        display: true
+    },
+    y: {
+        display: true
+    }
+}
 };
 
 
@@ -110,15 +114,7 @@ function addData(chart, label, data) {
   >
     <Container>
       <Row>
-        <Col><h1> ================{data1}  </h1> </Col>
-      </Row>
-      <Row>
-        <Col><h1> ================{yAxisData}  </h1> </Col>
-      </Row>
-      <Row>
-        <Col id="chart"><Bar options={options} data={data_live} /></Col>
-        <Col><Bar options={options} data={data} /></Col>
-        <Col><Line options={options} data={data} /></Col>
+        <Col><Bar id="chart" options={options} data={data} /></Col>
       </Row>
      
     </Container>
