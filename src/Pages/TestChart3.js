@@ -34,12 +34,12 @@ if(rand >= 30){
   const abc1 = number.shift()   
   const abc2 = number_2.shift() 
   number.push(Math.floor(rand))
-  number_2.push(0)
+  number_2.push(1)
   setNumber(number)
 } else {
   const abc1 = number.shift()   
   const abc2 = number_2.shift()
-  number.push(0) 
+  number.push(1) 
   number_2.push(Math.floor(rand))
   setNumber_2(number_2)
 }
@@ -114,7 +114,7 @@ var data = {
   >
     <Container>
       <Row>
-        <Col><Bar id="chart" options={options} data={data} /></Col>
+        <Col><Line id="chart" options={options} data={data} /></Col>
       </Row>
      
     </Container>

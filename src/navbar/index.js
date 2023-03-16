@@ -88,6 +88,9 @@ function Navbar_Menu(args) {
             <NavItem>
               <NavLink href="/testchart3">Test_Chart_1</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/home_page_1">Home Page 1</NavLink>
+            </NavItem>
           </Nav>
           <NavbarText>Simple Text</NavbarText>
         </Collapse>

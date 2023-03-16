@@ -12,6 +12,7 @@ import TestChart2 from './Pages/TestChart2'
 import TestChart1 from './Pages/TestChart1';
 import TestChart3 from './Pages/TestChart3';
 import Home from './Pages/Home'
+import Home_Page_1 from './Pages/Home_Page_1';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Route exact path='/' element={<Home/>}/>
       <Route path='/home' element={<Home/>}/>
       <Route path='/testchart3' element={<TestChart3/>}/>
+      <Route path='/home_page_1' element={<Home_Page_1/>}/>
       {/* <Route path='/about' element={<About/>}/>
       <Route path='/blogs' element={<Blog/>}/>
       <Route path='/signup' element={<SignUp/>}/>
