@@ -23,17 +23,15 @@ import {
   CardSubtitle,
   CardText,
   CardHeader,
-  Progress
+  Progress,
 } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LineChart from "./LineChart";
 
 const Home_Page_1 = () => {
-  
   //  ||||||||||||||||||||||||||||||||||||||||||| Bar chart start ||||||||||||||||||||||||||||||||||||||||||||||||||
 
-  
-    const [number, setNumber] = useState([
+  const [number, setNumber] = useState([
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0,
   ]);
@@ -51,25 +49,25 @@ const Home_Page_1 = () => {
       const rand = min + Math.random() * (max - min);
       const rand2 = min + Math.random() * (max - min * 4);
 
-    //   if (rand >= 30) {
-    //     setYAxisDataFinal([0, number[0], number[1]]);
-    //     const abc1 = number.shift();
-    //     const abc2 = number_2.shift();
-    //     number.push(Math.floor(rand));
-    //     number_2.push(1);
-    //     setNumber(number);
-    //   } else {
-    //     const abc1 = number.shift();
-    //     const abc2 = number_2.shift();
-    //     number.push(1);
-    //     number_2.push(Math.floor(rand));
-    //     setNumber_2(number_2);
-    //   }
+      //   if (rand >= 30) {
+      //     setYAxisDataFinal([0, number[0], number[1]]);
+      //     const abc1 = number.shift();
+      //     const abc2 = number_2.shift();
+      //     number.push(Math.floor(rand));
+      //     number_2.push(1);
+      //     setNumber(number);
+      //   } else {
+      //     const abc1 = number.shift();
+      //     const abc2 = number_2.shift();
+      //     number.push(1);
+      //     number_2.push(Math.floor(rand));
+      //     setNumber_2(number_2);
+      //   }
 
-      setYAxisDataFinal([0,number[0],number[1]])
-      const abc1 = number.shift()
-      number.push(Math.floor(rand))
-      setNumber(number)
+      setYAxisDataFinal([0, number[0], number[1]]);
+      const abc1 = number.shift();
+      number.push(Math.floor(rand));
+      setNumber(number);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -85,13 +83,13 @@ const Home_Page_1 = () => {
         borderColor: "rgb(53, 162, 235)",
         data: number,
       },
-    //   {
-    //     label: "Label",
-    //     fill: true,
-    //     backgroundColor: "rgba(256, 162, 235, 0.5)",
-    //     borderColor: "rgb(53, 162, 235)",
-    //     data: number_2,
-    //   },
+      //   {
+      //     label: "Label",
+      //     fill: true,
+      //     backgroundColor: "rgba(256, 162, 235, 0.5)",
+      //     borderColor: "rgb(53, 162, 235)",
+      //     data: number_2,
+      //   },
     ],
   };
 
@@ -101,7 +99,7 @@ const Home_Page_1 = () => {
       legend: {
         display: false,
       },
-      colors:{
+      colors: {
         enabled: true,
       },
       title: {
@@ -119,46 +117,79 @@ const Home_Page_1 = () => {
     },
   };
 
-//  ||||||||||||||||||||||||||||||||||||||||||| Bar chart end ||||||||||||||||||||||||||||||||||||||||||||||||||
+  //  ||||||||||||||||||||||||||||||||||||||||||| Bar chart end ||||||||||||||||||||||||||||||||||||||||||||||||||
 
-//  ||||||||||||||||||||||||||||||||||||||||||| Pie/Dougnut chart start ||||||||||||||||||||||||||||||||||||||||||||||||||
+  //  ||||||||||||||||||||||||||||||||||||||||||| Pie/Dougnut chart start ||||||||||||||||||||||||||||||||||||||||||||||||||
 
-const DoughnutConfig = {
-    type: 'doughnut',
+  const DoughnutConfig = {
+    type: "doughnut",
     data: data,
     responsive: true,
     plugins: {
       legend: {
         display: false,
       },
-    }
+    },
   };
 
-const DoughnutData = {
-    labels: [
-      'Red',
-      'Blue',
-      'Yellow'
+  const DoughnutData = {
+    labels: ["Red", "Blue", "Yellow"],
+    datasets: [
+      {
+        label: "My First Dataset",
+        data: [300, 50, 100],
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+        ],
+        hoverOffset: 4,
+      },
     ],
-    datasets: [{
-      label: 'My First Dataset',
-      data: [300, 50, 100],
-      backgroundColor: [
-        'rgb(255, 99, 132)',
-        'rgb(54, 162, 235)',
-        'rgb(255, 205, 86)'
-      ],
-      hoverOffset: 4
-    }]
   };
 
-//  ||||||||||||||||||||||||||||||||||||||||||| Pie/Dougnut chart end ||||||||||||||||||||||||||||||||||||||||||||||||||
-
+  //  ||||||||||||||||||||||||||||||||||||||||||| Pie/Dougnut chart end ||||||||||||||||||||||||||||||||||||||||||||||||||
 
   return (
     <Container>
-        <Row style={{}}>
-            <Col md={4}>
+      <Row style={{}}>
+         {/* ||||||||||||||||||||||||||||||||||||||||||| Card 1 start ||||||||||||||||||||||||||||||||||||| */}
+        <Col md={4}>
+        <pre></pre>
+          <Card style={{}}>
+            <CardHeader>Header1</CardHeader>
+            <Bar id="chart1" options={options} data={data} />
+            <pre></pre>
+            <Progress multi>
+              <Progress bar color="success" value="7">
+                45%
+              </Progress>
+              <Progress bar color="danger" value="7">
+                1%
+              </Progress>
+            </Progress>
+
+            <CardBody>
+              <CardTitle tag="h5">BRH-4</CardTitle>
+              <CardSubtitle className="mb-2 text-muted" tag="h6">
+                {" "}
+                Pitampura
+              </CardSubtitle>
+
+              {/* <CardText>
+            Some quick example text to build on the card title and make up the
+            bulk of the card‘s content.
+          </CardText> */}
+              <Button disabled>Last checked: 30sec</Button>
+            </CardBody>
+          </Card>
+        </Col>
+
+        {/* // ||||||||||||||||||||||||||||||||||||||| Card 1 End |||||||||||||||||||||||||||||||||||||||||| */}
+
+        {/* // ||||||||||||||||||||||||||||||||||||||| Card 2 Start |||||||||||||||||||||||||||||||||||||||| */}
+        <Col md={4}>
+        <pre></pre>
       <Card style={{}}>
 
       <CardHeader>
@@ -171,19 +202,159 @@ const DoughnutData = {
           <Progress bar color="danger" value="7" >1%</Progress>
       </Progress>
 
+
         <CardBody>
           <CardTitle tag="h5">BRH-4</CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
 
-          <CardText>
+          {/* <CardText>
             Some quick example text to build on the card title and make up the
             bulk of the card‘s content.
-          </CardText>
+          </CardText> */}
+          <Button disabled>
+          Last checked: 30sec
+          </Button>
+
         </CardBody>
       </Card>
       </Col>
-      
-      <Col md={4}>
+        {/* // |||||||||||||||||||||||||||||||||||||||  Card 2 end ||||||||||||||||||||||||||||||||||||||||| */}
+
+        {/* ||||||||||||||||||||||||||||||||||||||||||||||||| Card 3 start ||||||||||||||||||||||||||||||||| */}
+        <Col md={4}>
+        <pre></pre>
+      <Card style={{}}>
+
+      <CardHeader>
+      Header1
+    </CardHeader>
+      <Bar id="chart1" options={options} data={data} />
+     <pre></pre>
+      <Progress multi>
+          <Progress bar color="success" value="7" >45%</Progress>
+          <Progress bar color="danger" value="7" >1%</Progress>
+      </Progress>
+
+
+        <CardBody>
+          <CardTitle tag="h5">BRH-4</CardTitle>
+          <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
+
+          {/* <CardText>
+            Some quick example text to build on the card title and make up the
+            bulk of the card‘s content.
+          </CardText> */}
+          <Button disabled>
+          Last checked: 30sec
+          </Button>
+
+        </CardBody>
+      </Card>
+      </Col>
+        {/* ||||||||||||||||||||||||||||||||||||||||||||||||| Card 3 end ||||||||||||||||||||||||||||||||||| */}
+
+        {/*|||||||||||||||||||||||||||||||||||||||||||||||||| Card 4 Start |||||||||||||||||||||||||||||||||  */}
+        <Col md={4}>
+        <pre></pre>
+      <Card style={{}}>
+
+      <CardHeader>
+      Header1
+    </CardHeader>
+      <Bar id="chart1" options={options} data={data} />
+     <pre></pre>
+      <Progress multi>
+          <Progress bar color="success" value="7" >45%</Progress>
+          <Progress bar color="danger" value="7" >1%</Progress>
+      </Progress>
+
+
+        <CardBody>
+          <CardTitle tag="h5">BRH-4</CardTitle>
+          <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
+
+          {/* <CardText>
+            Some quick example text to build on the card title and make up the
+            bulk of the card‘s content.
+          </CardText> */}
+          <Button disabled>
+          Last checked: 30sec
+          </Button>
+
+        </CardBody>
+      </Card>
+      </Col>
+        {/* ||||||||||||||||||||||||||||||||||||||||||||||||| Card 4 end   ||||||||||||||||||||||||||||||||| */}
+
+        {/* ||||||||||||||||||||||||||||||||||||||||||||||||| Card 5 Start |||||||||||||||||||||||||||||||| */}
+        <Col md={4}>
+        <pre></pre>
+      <Card style={{}}>
+
+      <CardHeader>
+      Header1
+    </CardHeader>
+      <Bar id="chart1" options={options} data={data} />
+     <pre></pre>
+      <Progress multi>
+          <Progress bar color="success" value="7" >45%</Progress>
+          <Progress bar color="danger" value="7" >1%</Progress>
+      </Progress>
+
+
+        <CardBody>
+          <CardTitle tag="h5">BRH-4</CardTitle>
+          <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
+
+          {/* <CardText>
+            Some quick example text to build on the card title and make up the
+            bulk of the card‘s content.
+          </CardText> */}
+          <Button disabled>
+          Last checked: 30sec
+          </Button>
+
+        </CardBody>
+      </Card>
+      </Col>
+        {/* ||||||||||||||||||||||||||||||||||||||||||||||||| Card 5 end   |||||||||||||||||||||||||||||||| */}
+
+       {/* |||||||||||||||||||||||||||||||||||||||||||||||||| Card 6 Start |||||||||||||||||||||||||||||||| */}
+
+       <Col md={4}>
+       <pre></pre>
+      <Card style={{}}>
+
+      <CardHeader>
+      Header1
+    </CardHeader>
+      <Bar id="chart1" options={options} data={data} />
+     <pre></pre>
+      <Progress multi>
+          <Progress bar color="success" value="7" >45%</Progress>
+          <Progress bar color="danger" value="7" >1%</Progress>
+      </Progress>
+
+
+        <CardBody>
+          <CardTitle tag="h5">BRH-4</CardTitle>
+          <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
+
+          {/* <CardText>
+            Some quick example text to build on the card title and make up the
+            bulk of the card‘s content.
+          </CardText> */}
+          <Button disabled>
+          Last checked: 30sec
+          </Button>
+
+        </CardBody>
+      </Card>
+      </Col>
+
+       {/* |||||||||||||||||||||||||||||||||||||||||||||||||| Card 6 end |||||||||||||||||||||||||||||||||| */}
+
+        {/* <Col md={4}>
       <Card style={{ }}>
       <CardHeader>
       Header2
@@ -198,10 +369,9 @@ const DoughnutData = {
           </CardText>
         </CardBody>
       </Card>
-      </Col>
+      </Col> */}
 
-
-      <Col md={4}>
+        {/* <Col md={4}>
       <Card style={{}}>
       <CardHeader>
       Header3
@@ -216,19 +386,18 @@ const DoughnutData = {
           </CardText>
         </CardBody>
       </Card>
-      </Col>
-
+      </Col> */}
       </Row>
 
       <Row />
-      <Row>
+      {/* <Row>
         <Col>
           <Bar id="chart1" options={options} data={data} />
         </Col>
         <Col>
           <Bar id="chart2" options={options} data={data} />
         </Col>
-      </Row>
+      </Row> */}
     </Container>
   );
 };
