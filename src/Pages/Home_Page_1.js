@@ -22,7 +22,8 @@ import {
   CardTitle,
   CardSubtitle,
   CardText,
-  CardHeader
+  CardHeader,
+  Progress
 } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LineChart from "./LineChart";
@@ -125,6 +126,12 @@ const Home_Page_1 = () => {
 const DoughnutConfig = {
     type: 'doughnut',
     data: data,
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    }
   };
 
 const DoughnutData = {
@@ -153,13 +160,21 @@ const DoughnutData = {
         <Row style={{}}>
             <Col md={4}>
       <Card style={{}}>
+
       <CardHeader>
       Header1
     </CardHeader>
       <Bar id="chart1" options={options} data={data} />
+     <pre></pre>
+      <Progress multi>
+          <Progress bar color="success" value="7" >45%</Progress>
+          <Progress bar color="danger" value="7" >1%</Progress>
+      </Progress>
+
         <CardBody>
           <CardTitle tag="h5">BRH-4</CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
+
           <CardText>
             Some quick example text to build on the card title and make up the
             bulk of the card‘s content.
@@ -191,7 +206,7 @@ const DoughnutData = {
       <CardHeader>
       Header3
     </CardHeader>
-    <Pie id="chart1" options={DoughnutData} data={DoughnutData} />
+    <Pie id="chart1" options={DoughnutConfig} data={DoughnutData} />
         <CardBody>
           <CardTitle tag="h5">BRH-4</CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
