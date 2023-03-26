@@ -152,10 +152,12 @@ var data = JSON.stringify({
     }
   });
   
-  xhr.open("GET", "https://staging.yoga.saankhyalabs.com/feapi/frontend/devices/B0:7E:11:48:86:24/stats/");
-  xhr.setRequestHeader("Authorization", "Basic YnJob3duZXI6MTIzQEJyaG93bmVy");
-  xhr.setRequestHeader("Content-Type", "application/json");
+//   xhr.open("GET", "https://staging.yoga.saankhyalabs.com/feapi/frontend/devices/B0:7E:11:48:86:24/stats/");
+//   xhr.setRequestHeader("Authorization", "Basic YnJob3duZXI6MTIzQEJyaG93bmVy");
+//   xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.open("GET", "http://174.138.120.85:3008/4");
   
+
   xhr.send(data);
 
 
@@ -227,11 +229,12 @@ var data = JSON.stringify({
     }
       });
       
-      xhr.open("GET", "https://staging.yoga.saankhyalabs.com/feapi/frontend/devices/B0:7E:11:48:86:24/stats/");
-      xhr.setRequestHeader("Authorization", "Basic YnJob3duZXI6MTIzQEJyaG93bmVy");
-      xhr.setRequestHeader("Content-Type", "application/json");
-      
-      xhr.send(data);
+//   xhr.open("GET", "https://staging.yoga.saankhyalabs.com/feapi/frontend/devices/B0:7E:11:48:86:24/stats/");
+//   xhr.setRequestHeader("Authorization", "Basic YnJob3duZXI6MTIzQEJyaG93bmVy");
+//   xhr.setRequestHeader("Content-Type", "application/json");
+// xhr.send(data);
+xhr.open("GET", "http://174.138.120.85:3008/4");
+xhr.send(); 
 
       //////////////////////////// fetch from server end ////////////////////////////
 
