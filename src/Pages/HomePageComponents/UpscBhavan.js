@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Line, Bar, Pie } from "react-chartjs-2";
-import axios, * as others from 'axios';
 import {Link} from 'react-router-dom';
 import {UsernamePass,Password} from "./UsernamePass";
 
