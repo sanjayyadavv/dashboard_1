@@ -66,12 +66,12 @@ function Navbar_Menu(args) {
   return (
     <div>
       <Navbar {...args}>
-        <NavbarBrand href="/">Saankhya D2M BRH</NavbarBrand>
+        <NavbarBrand href="/home_page_1">Saankhya D2M BRH</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink href="/home">Home</NavLink>
+              <NavLink href="/home_page_1">Home</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/about">About</NavLink>

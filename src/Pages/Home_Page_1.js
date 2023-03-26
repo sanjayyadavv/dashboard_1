@@ -27,6 +27,12 @@ import {
 } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LineChart from "./LineChart";
+import UpscBhavan from "./HomePageComponents/UpscBhavan";
+import Shangrila from "./HomePageComponents/Shangrila";
+import Dhawandeep from "./HomePageComponents/Dhawandeep";
+import K_51 from "./HomePageComponents/K_51";
+import Kanchenjunga from "./HomePageComponents/Kanchenjunga";
+import Uco from "./HomePageComponents/Uco";
 
 const Home_Page_1 = () => {
   //  ||||||||||||||||||||||||||||||||||||||||||| Bar chart start ||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -79,17 +85,22 @@ const Home_Page_1 = () => {
       {
         label: "Label",
         fill: true,
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        backgroundColor: (context: ScriptableContext<"line">) => {
+          const ctx = context.chart.ctx;
+          const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+          gradient.addColorStop(0, "rgba(53,174,50,1)");
+          gradient.addColorStop(1, "rgba(53,174,50,0)");
+          return gradient;
+        },
         borderColor: "rgb(53, 162, 235)",
         data: number,
       },
-      //   {
-      //     label: "Label",
-      //     fill: true,
-      //     backgroundColor: "rgba(256, 162, 235, 0.5)",
-      //     borderColor: "rgb(53, 162, 235)",
-      //     data: number_2,
-      //   },
+        {
+          type: 'line',
+          fill: false,
+          borderColor: "rgb(240, 20, 35)",
+          data: [45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45],
+        },
     ],
   };
 
@@ -115,6 +126,9 @@ const Home_Page_1 = () => {
         display: false,
       },
     },
+    radius:0,
+    borderRadius:50,
+  
   };
 
   //  ||||||||||||||||||||||||||||||||||||||||||| Bar chart end ||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -152,254 +166,34 @@ const Home_Page_1 = () => {
 
   return (
     <Container>
-      <Row style={{}}>
-         {/* ||||||||||||||||||||||||||||||||||||||||||| Card 1 start ||||||||||||||||||||||||||||||||||||| */}
-        <Col md={4}>
-        <pre></pre>
-          <Card style={{}}>
-            <CardHeader>Header1</CardHeader>
-            <Bar id="chart1" options={options} data={data} />
-            <pre></pre>
-            <Progress multi>
-              <Progress bar color="success" value="7">
-                45%
-              </Progress>
-              <Progress bar color="danger" value="7">
-                1%
-              </Progress>
-            </Progress>
+<Row>
+  <Col>
+  <UpscBhavan/>
+  </Col>
 
-            <CardBody>
-              <CardTitle tag="h5">BRH-4</CardTitle>
-              <CardSubtitle className="mb-2 text-muted" tag="h6">
-                {" "}
-                Pitampura
-              </CardSubtitle>
+  <Col>
+  <Shangrila/>
+  </Col>
 
-              {/* <CardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card‘s content.
-          </CardText> */}
-              <Button disabled>Last checked: 30sec</Button>
-            </CardBody>
-          </Card>
-        </Col>
+  <Col>
+  <Dhawandeep/>
+  </Col>
 
-        {/* // ||||||||||||||||||||||||||||||||||||||| Card 1 End |||||||||||||||||||||||||||||||||||||||||| */}
+  <Col>
+  <K_51/>
+  </Col>
 
-        {/* // ||||||||||||||||||||||||||||||||||||||| Card 2 Start |||||||||||||||||||||||||||||||||||||||| */}
-        <Col md={4}>
-        <pre></pre>
-      <Card style={{}}>
+  <Col>
+  <Kanchenjunga/>
+  </Col>
 
-      <CardHeader>
-      Header1
-    </CardHeader>
-      <Bar id="chart1" options={options} data={data} />
-     <pre></pre>
-      <Progress multi>
-          <Progress bar color="success" value="7" >45%</Progress>
-          <Progress bar color="danger" value="7" >1%</Progress>
-      </Progress>
+  <Col>
+  <Uco/>
+  </Col>
+</Row>
+ </Container>
+);
+};  
 
-
-        <CardBody>
-          <CardTitle tag="h5">BRH-4</CardTitle>
-          <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
-
-          {/* <CardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card‘s content.
-          </CardText> */}
-          <Button disabled>
-          Last checked: 30sec
-          </Button>
-
-        </CardBody>
-      </Card>
-      </Col>
-        {/* // |||||||||||||||||||||||||||||||||||||||  Card 2 end ||||||||||||||||||||||||||||||||||||||||| */}
-
-        {/* ||||||||||||||||||||||||||||||||||||||||||||||||| Card 3 start ||||||||||||||||||||||||||||||||| */}
-        <Col md={4}>
-        <pre></pre>
-      <Card style={{}}>
-
-      <CardHeader>
-      Header1
-    </CardHeader>
-      <Bar id="chart1" options={options} data={data} />
-     <pre></pre>
-      <Progress multi>
-          <Progress bar color="success" value="7" >45%</Progress>
-          <Progress bar color="danger" value="7" >1%</Progress>
-      </Progress>
-
-
-        <CardBody>
-          <CardTitle tag="h5">BRH-4</CardTitle>
-          <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
-
-          {/* <CardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card‘s content.
-          </CardText> */}
-          <Button disabled>
-          Last checked: 30sec
-          </Button>
-
-        </CardBody>
-      </Card>
-      </Col>
-        {/* ||||||||||||||||||||||||||||||||||||||||||||||||| Card 3 end ||||||||||||||||||||||||||||||||||| */}
-
-        {/*|||||||||||||||||||||||||||||||||||||||||||||||||| Card 4 Start |||||||||||||||||||||||||||||||||  */}
-        <Col md={4}>
-        <pre></pre>
-      <Card style={{}}>
-
-      <CardHeader>
-      Header1
-    </CardHeader>
-      <Bar id="chart1" options={options} data={data} />
-     <pre></pre>
-      <Progress multi>
-          <Progress bar color="success" value="7" >45%</Progress>
-          <Progress bar color="danger" value="7" >1%</Progress>
-      </Progress>
-
-
-        <CardBody>
-          <CardTitle tag="h5">BRH-4</CardTitle>
-          <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
-
-          {/* <CardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card‘s content.
-          </CardText> */}
-          <Button disabled>
-          Last checked: 30sec
-          </Button>
-
-        </CardBody>
-      </Card>
-      </Col>
-        {/* ||||||||||||||||||||||||||||||||||||||||||||||||| Card 4 end   ||||||||||||||||||||||||||||||||| */}
-
-        {/* ||||||||||||||||||||||||||||||||||||||||||||||||| Card 5 Start |||||||||||||||||||||||||||||||| */}
-        <Col md={4}>
-        <pre></pre>
-      <Card style={{}}>
-
-      <CardHeader>
-      Header1
-    </CardHeader>
-      <Bar id="chart1" options={options} data={data} />
-     <pre></pre>
-      <Progress multi>
-          <Progress bar color="success" value="7" >45%</Progress>
-          <Progress bar color="danger" value="7" >1%</Progress>
-      </Progress>
-
-
-        <CardBody>
-          <CardTitle tag="h5">BRH-4</CardTitle>
-          <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
-
-          {/* <CardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card‘s content.
-          </CardText> */}
-          <Button disabled>
-          Last checked: 30sec
-          </Button>
-
-        </CardBody>
-      </Card>
-      </Col>
-        {/* ||||||||||||||||||||||||||||||||||||||||||||||||| Card 5 end   |||||||||||||||||||||||||||||||| */}
-
-       {/* |||||||||||||||||||||||||||||||||||||||||||||||||| Card 6 Start |||||||||||||||||||||||||||||||| */}
-
-       <Col md={4}>
-       <pre></pre>
-      <Card style={{}}>
-
-      <CardHeader>
-      Header1
-    </CardHeader>
-      <Bar id="chart1" options={options} data={data} />
-     <pre></pre>
-      <Progress multi>
-          <Progress bar color="success" value="7" >45%</Progress>
-          <Progress bar color="danger" value="7" >1%</Progress>
-      </Progress>
-
-
-        <CardBody>
-          <CardTitle tag="h5">BRH-4</CardTitle>
-          <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
-
-          {/* <CardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card‘s content.
-          </CardText> */}
-          <Button disabled>
-          Last checked: 30sec
-          </Button>
-
-        </CardBody>
-      </Card>
-      </Col>
-
-       {/* |||||||||||||||||||||||||||||||||||||||||||||||||| Card 6 end |||||||||||||||||||||||||||||||||| */}
-
-        {/* <Col md={4}>
-      <Card style={{ }}>
-      <CardHeader>
-      Header2
-    </CardHeader>
-    <Line id="chart1" options={options} data={data} />
-        <CardBody>
-          <CardTitle tag="h5">BRH-4</CardTitle>
-          <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
-          <CardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card‘s content.
-          </CardText>
-        </CardBody>
-      </Card>
-      </Col> */}
-
-        {/* <Col md={4}>
-      <Card style={{}}>
-      <CardHeader>
-      Header3
-    </CardHeader>
-    <Pie id="chart1" options={DoughnutConfig} data={DoughnutData} />
-        <CardBody>
-          <CardTitle tag="h5">BRH-4</CardTitle>
-          <CardSubtitle className="mb-2 text-muted" tag="h6">  Pitampura</CardSubtitle>
-          <CardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card‘s content.
-          </CardText>
-        </CardBody>
-      </Card>
-      </Col> */}
-      </Row>
-
-      <Row />
-      {/* <Row>
-        <Col>
-          <Bar id="chart1" options={options} data={data} />
-        </Col>
-        <Col>
-          <Bar id="chart2" options={options} data={data} />
-        </Col>
-      </Row> */}
-    </Container>
-  );
-};
 
 export default Home_Page_1;
