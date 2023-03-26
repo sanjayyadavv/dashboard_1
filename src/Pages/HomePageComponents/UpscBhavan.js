@@ -157,7 +157,7 @@ var data = JSON.stringify({
 //   xhr.setRequestHeader("Content-Type", "application/json");
   
 //   xhr.send(data);
-xhr.open("GET", "http://174.138.120.85:3008/2");
+xhr.open("GET", "http://174.138.120.85:3008/1");
 xhr.send(); 
 
 
@@ -234,7 +234,7 @@ xhr.send();
     //   xhr.setRequestHeader("Content-Type", "application/json");
       
     //   xhr.send(data);
-    xhr.open("GET", "http://174.138.120.85:3008/2");
+    xhr.open("GET", "http://174.138.120.85:3008/1");
     xhr.send(); 
       //////////////////////////// fetch from server end ////////////////////////////
 
