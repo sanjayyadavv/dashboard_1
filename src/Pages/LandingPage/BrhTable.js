@@ -92,7 +92,7 @@ const headCells = [
     id: 'fat',
     numeric: true,
     disablePadding: false,
-    label: 'Last RF D-time',
+    label: 'Last RF Down-Time',
   },
   {
     id: 'carbs',
@@ -104,19 +104,19 @@ const headCells = [
     id: 'protein',
     numeric: true,
     disablePadding: false,
-    label: 'System up-time',
+    label: 'System Total Up-Time',
   },
   {
     id: 'protein1',
     numeric: true,
     disablePadding: false,
-    label: 'RF TX',
+    label: 'RF Tx-Power',
   },
   {
     id: 'protein2',
     numeric: true,
     disablePadding: false,
-    label: 'Temp',
+    label: 'Temp(SOM)',
   },
 ];
 
