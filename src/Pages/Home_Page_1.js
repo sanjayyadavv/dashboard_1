@@ -33,6 +33,7 @@ import Dhawandeep from "./HomePageComponents/Dhawandeep";
 import K_51 from "./HomePageComponents/K_51";
 import Kanchenjunga from "./HomePageComponents/Kanchenjunga";
 import Uco from "./HomePageComponents/Uco";
+import EnhancedTable from "./LandingPage/BrhTable";
 
 const Home_Page_1 = () => {
   //  ||||||||||||||||||||||||||||||||||||||||||| Bar chart start ||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -95,12 +96,15 @@ const Home_Page_1 = () => {
         borderColor: "rgb(53, 162, 235)",
         data: number,
       },
-        {
-          type: 'line',
-          fill: false,
-          borderColor: "rgb(240, 20, 35)",
-          data: [45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45],
-        },
+      {
+        type: "line",
+        fill: false,
+        borderColor: "rgb(240, 20, 35)",
+        data: [
+          45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+          45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+        ],
+      },
     ],
   };
 
@@ -126,9 +130,8 @@ const Home_Page_1 = () => {
         display: false,
       },
     },
-    radius:0,
-    borderRadius:50,
-  
+    radius: 0,
+    borderRadius: 50,
   };
 
   //  ||||||||||||||||||||||||||||||||||||||||||| Bar chart end ||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -164,36 +167,49 @@ const Home_Page_1 = () => {
 
   //  ||||||||||||||||||||||||||||||||||||||||||| Pie/Dougnut chart end ||||||||||||||||||||||||||||||||||||||||||||||||||
 
+  const divStyle = {
+    // margin: '3px',
+   // border: '5px #e300de',
+    backgroundColor: " #e3e9de"
+  };
+
   return (
-    <Container>
-<Row>
-  <Col>
-  <UpscBhavan/>
-  </Col>
+    <Container style={divStyle}>
+      <Row ><><pre></pre><pre></pre></></Row>
+      <Row >
+        <Col class="shadow p-3 bg-white rounded">
+        <Container > <EnhancedTable/> </Container>
+        </Col>
 
-  <Col>
-  <Shangrila/>
-  </Col>
+        </Row>
+        <Row >
+        <Col  class="shadow p-3 mb-5 bg-white rounded">
+          <UpscBhavan />
+        </Col>
 
-  <Col>
-  <Dhawandeep/>
-  </Col>
+        <Col class="shadow p-3 mb-5 bg-white rounded">
+          <Shangrila />
+        </Col>
 
-  <Col>
-  <K_51/>
-  </Col>
+        <Col class="shadow p-3 mb-5 bg-white rounded">
+          <Dhawandeep />
+        </Col>
 
-  <Col>
-  <Kanchenjunga/>
-  </Col>
+        <Col class="shadow p-3 mb-5 bg-white rounded">
+          <K_51 />
+        </Col>
 
-  <Col>
-  <Uco/>
-  </Col>
-</Row>
- </Container>
-);
-};  
+        <Col class="shadow p-3 mb-5 bg-white rounded">
+          <Kanchenjunga />
+        </Col>
 
+        <Col class="shadow p-3 mb-5 bg-white rounded">
+          <Uco />
+        </Col>
+      </Row>
+      <Row ><><pre></pre><pre></pre></></Row>
+    </Container>
+  );
+};
 
 export default Home_Page_1;
