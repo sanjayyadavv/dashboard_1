@@ -267,7 +267,13 @@ xhr.send();
           type: 'line',
           fill: false,
           borderColor: "rgb(240, 20, 35)",
-          data: [75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,],
+          data: [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,],
+        },
+        {
+          type: 'line',
+          fill: false,
+          borderColor: "rgb(00, 00, 00)",
+          data: [125],
         },
     ],
   };
@@ -311,7 +317,7 @@ xhr.send();
                     <Col>
                 Dhawandeep
                 </Col>
-                <Col></Col>
+                
                 
                 <Col> 
                 <Button size="sm" className="float-right" disabled color={brhStatus}>Status: {brhStatusText}</Button>
@@ -332,7 +338,7 @@ xhr.send();
               <CardText>
                     <Row>
                     <Col>
-                    <Button size="sm" disabled>SW Version: {swVersion}</Button>
+                    <Button size="sm" disabled>SW Ver: {swVersion}</Button>
                     </Col>
                     <Col>
                     <Button size="sm" disabled>GPS Lock: {gpsLock? "True": "False"}</Button>

@@ -5,6 +5,7 @@ import {
   Container,
   Row,
   Col,
+  CardGroup,
   Form,
   Input,
   Button,
@@ -182,7 +183,7 @@ const Home_Page_1 = () => {
         </Col>
 
         </Row>
-        <Row >
+        <CardGroup>
         <Col  class="shadow p-3 mb-5 bg-white rounded">
           <UpscBhavan />
         </Col>
@@ -206,7 +207,7 @@ const Home_Page_1 = () => {
         <Col class="shadow p-3 mb-5 bg-white rounded">
           <Uco />
         </Col>
-      </Row>
+        </CardGroup>
       <Row ><><pre></pre><pre></pre></></Row>
     </Container>
   );

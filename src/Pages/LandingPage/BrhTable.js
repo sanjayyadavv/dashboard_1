@@ -316,37 +316,37 @@ export default function EnhancedTable() {
 
           var foundUpsc = getStateData('195', stateData)
           if (foundUpsc != null && foundUpsc != undefined) {
-            setStatusUpsc(deviceState[parseInt(foundUpsc[0].device_state + 1)]);
+        //    setStatusUpsc(deviceState[parseInt(foundUpsc[0].device_state + 1)]);
             setRfTxUpsc(rftxPower[foundUpsc[0].device_requested_tx_power]);
           }
 
           var foundUco = getStateData('201', stateData)
           if (foundUco != null && foundUco != undefined) {
-            setStatusUco(deviceState[parseInt(foundUco[0].device_state + 1)]);
+        //    setStatusUco(deviceState[parseInt(foundUco[0].device_state + 1)]);
             setRfTxUco(rftxPower[foundUco[0].device_requested_tx_power]);
           }
 
           var foundShangrila = getStateData('207', stateData)
           if (foundShangrila != null && foundShangrila != undefined) {
-            setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]);
+        //    setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]);
             setRfTxShangrila(rftxPower[foundShangrila[0].device_requested_tx_power]);
           }
 
           var foundKanchenjunga = getStateData('209', stateData)
           if (foundKanchenjunga != null && foundKanchenjunga != undefined) {
-            setStatusKanchenjunga(deviceState[parseInt(foundKanchenjunga[0].device_state + 1)]);
+        //    setStatusKanchenjunga(deviceState[parseInt(foundKanchenjunga[0].device_state + 1)]);
             setRfTxKanchenjunga(rftxPower[foundKanchenjunga[0].device_requested_tx_power]);
           }
 
           var foundK_51 = getStateData('204', stateData)
           if (foundK_51 != null && foundK_51 != undefined) {
-            setStatusK_51(deviceState[parseInt(foundK_51[0].device_state) + 1]);
+        //    setStatusK_51(deviceState[parseInt(foundK_51[0].device_state) + 1]);
             setRfTxK_51(rftxPower[foundK_51[0].device_requested_tx_power]);
           }
 
           var foundDhawandeep = getStateData('197', stateData)
           if (foundDhawandeep != null && foundDhawandeep != undefined) {
-            setStatusDhawandeep(deviceState[parseInt(foundDhawandeep[0].device_state + 1)]);
+        //    setStatusDhawandeep(deviceState[parseInt(foundDhawandeep[0].device_state + 1)]);
             setRfTxDhawandeep(rftxPower[foundDhawandeep[0].device_requested_tx_power]);
           }
 
@@ -379,6 +379,24 @@ export default function EnhancedTable() {
            setRfDownTimeUpsc("Duration: " + dateStart.toLocaleDateString("en-US") + " " + dateStart.toLocaleTimeString("default") +" to "+ dateEnd.toLocaleDateString("en-US") + " " + dateEnd.toLocaleTimeString("default"));
 
            setTempUpsc(Math.floor(abc[0].system_stats_som_internal_temp))
+
+            ///////////////
+            const setLastUpdateTime = abc[0].timestamp; 
+            //setLastCheckedTime( new Date(Date.now() + 19800000).toISOString())
+            const setLastCheckedTimeUnix =  Date.now()
+            if(parseInt((setLastCheckedTimeUnix - (Date.parse((abc[0].timestamp))))) > 300000 ){
+              // setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]); 
+              //   const deviceState = ["Down", "Provisioned", "Init", "Config", "UP"]
+ 
+            //  setBrhStatus("danger")
+            setStatusUpsc(deviceState[1]);
+            } else{
+              //  setBrhStatus("success")
+              setStatusUpsc(deviceState[4]);
+            }
+ 
+ ///////////////////
+
         }
       }
       });
@@ -407,6 +425,24 @@ export default function EnhancedTable() {
            setRfDownTimeShangrila("Duration: " + dateStart.toLocaleDateString("en-US") + " " + dateStart.toLocaleTimeString("default") +" to "+ dateEnd.toLocaleDateString("en-US") + " " + dateEnd.toLocaleTimeString("default"));
 
            setTempShangrila(Math.floor(abc[0].system_stats_som_internal_temp))
+
+              ///////////////
+              const setLastUpdateTime = abc[0].timestamp; 
+              //setLastCheckedTime( new Date(Date.now() + 19800000).toISOString())
+              const setLastCheckedTimeUnix =  Date.now()
+              if(parseInt((setLastCheckedTimeUnix - (Date.parse((abc[0].timestamp))))) > 300000 ){
+                // setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]); 
+                //   const deviceState = ["Down", "Provisioned", "Init", "Config", "UP"]
+   
+              //  setBrhStatus("danger")
+              setStatusShangrila(deviceState[1]);
+              } else{
+                //  setBrhStatus("success")
+                setStatusShangrila(deviceState[4]);
+              }
+   
+   ///////////////////
+
         }
       }
       });
@@ -437,6 +473,25 @@ export default function EnhancedTable() {
            setRfDownTimeDhawandeep("Duration: " + dateStart.toLocaleDateString("en-US") + " " + dateStart.toLocaleTimeString("default") +" to "+ dateEnd.toLocaleDateString("en-US") + " " + dateEnd.toLocaleTimeString("default"));
 
            setTempDhawandeep(Math.floor(abc[0].system_stats_som_internal_temp))
+
+               ///////////////
+               const setLastUpdateTime = abc[0].timestamp; 
+               //setLastCheckedTime( new Date(Date.now() + 19800000).toISOString())
+               const setLastCheckedTimeUnix =  Date.now()
+               if(parseInt((setLastCheckedTimeUnix - (Date.parse((abc[0].timestamp))))) > 300000 ){
+                 // setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]); 
+                 //   const deviceState = ["Down", "Provisioned", "Init", "Config", "UP"]
+    
+               //  setBrhStatus("danger")
+               setStatusDhawandeep(deviceState[1]);
+               } else{
+                 //  setBrhStatus("success")
+                 setStatusDhawandeep(deviceState[4]);
+               }
+    
+    ///////////////////
+
+
         }
       }
       });
@@ -466,6 +521,24 @@ export default function EnhancedTable() {
            setRfDownTimeK_51("Duration: " + dateStart.toLocaleDateString("en-US") + " " + dateStart.toLocaleTimeString("default") +" to "+ dateEnd.toLocaleDateString("en-US") + " " + dateEnd.toLocaleTimeString("default"));
 
            setTempK_51(Math.floor(abc[0].system_stats_som_internal_temp))
+
+                                          ///////////////
+                                          const setLastUpdateTime = abc[0].timestamp; 
+                                          //setLastCheckedTime( new Date(Date.now() + 19800000).toISOString())
+                                          const setLastCheckedTimeUnix =  Date.now()
+                                          if(parseInt((setLastCheckedTimeUnix - (Date.parse((abc[0].timestamp))))) > 300000 ){
+                                            // setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]); 
+                                            //   const deviceState = ["Down", "Provisioned", "Init", "Config", "UP"]
+                               
+                                          //  setBrhStatus("danger")
+                                          setStatusK_51(deviceState[1]);
+                                          } else{
+                                            //  setBrhStatus("success")
+                                            setStatusK_51(deviceState[4]);
+                                          }
+                               
+                               ///////////////////
+
         }
       }
       });
@@ -495,6 +568,24 @@ export default function EnhancedTable() {
            setRfDownTimeKanchenjunga("Duration: " + dateStart.toLocaleDateString("en-US") + " " + dateStart.toLocaleTimeString("default") +" to "+ dateEnd.toLocaleDateString("en-US") + " " + dateEnd.toLocaleTimeString("default"));
 
            setTempKanchenjunga(Math.floor(abc[0].system_stats_som_internal_temp))
+
+                                 ///////////////
+                                 const setLastUpdateTime = abc[0].timestamp; 
+                                 //setLastCheckedTime( new Date(Date.now() + 19800000).toISOString())
+                                 const setLastCheckedTimeUnix =  Date.now()
+                                 if(parseInt((setLastCheckedTimeUnix - (Date.parse((abc[0].timestamp))))) > 300000 ){
+                                   // setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]); 
+                                   //   const deviceState = ["Down", "Provisioned", "Init", "Config", "UP"]
+                      
+                                 //  setBrhStatus("danger")
+                                 setStatusKanchenjunga(deviceState[1]);
+                                 } else{
+                                   //  setBrhStatus("success")
+                                   setStatusKanchenjunga(deviceState[4]);
+                                 }
+                      
+                      ///////////////////
+
         }
       }
       });
@@ -523,6 +614,24 @@ export default function EnhancedTable() {
            setRfDownTimeUco("Duration: " + dateStart.toLocaleDateString("en-US") + " " + dateStart.toLocaleTimeString("default") +" to "+ dateEnd.toLocaleDateString("en-US") + " " + dateEnd.toLocaleTimeString("default"));
 
            setTempUco(Math.floor(abc[0].system_stats_som_internal_temp))
+
+                      ///////////////
+                      const setLastUpdateTime = abc[0].timestamp; 
+                      //setLastCheckedTime( new Date(Date.now() + 19800000).toISOString())
+                      const setLastCheckedTimeUnix =  Date.now()
+                      if(parseInt((setLastCheckedTimeUnix - (Date.parse((abc[0].timestamp))))) > 300000 ){
+                        // setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]); 
+                        //   const deviceState = ["Down", "Provisioned", "Init", "Config", "UP"]
+           
+                      //  setBrhStatus("danger")
+                      setStatusUco(deviceState[1]);
+                      } else{
+                        //  setBrhStatus("success")
+                        setStatusUco(deviceState[4]);
+                      }
+           
+           ///////////////////
+
         }
       }
       });
@@ -547,37 +656,37 @@ export default function EnhancedTable() {
 
           var foundUpsc = getStateData('195', stateData)
           if (foundUpsc != null && foundUpsc != undefined) {
-            setStatusUpsc(deviceState[parseInt(foundUpsc[0].device_state + 1)]);
+      //      setStatusUpsc(deviceState[parseInt(foundUpsc[0].device_state + 1)]);
             setRfTxUpsc(rftxPower[foundUpsc[0].device_requested_tx_power]);
           }
 
           var foundUco = getStateData('201', stateData)
           if (foundUco != null && foundUco != undefined) {
-            setStatusUco(deviceState[parseInt(foundUco[0].device_state + 1)]);
+      //      setStatusUco(deviceState[parseInt(foundUco[0].device_state + 1)]);
             setRfTxUco(rftxPower[foundUco[0].device_requested_tx_power]);
           }
 
           var foundShangrila = getStateData('207', stateData)
           if (foundShangrila != null && foundShangrila != undefined) {
-            setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]);
+      //      setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]);
             setRfTxShangrila(rftxPower[foundShangrila[0].device_requested_tx_power]);
           }
 
           var foundKanchenjunga = getStateData('209', stateData)
           if (foundKanchenjunga != null && foundKanchenjunga != undefined) {
-            setStatusKanchenjunga(deviceState[parseInt(foundKanchenjunga[0].device_state + 1)]);
+    //        setStatusKanchenjunga(deviceState[parseInt(foundKanchenjunga[0].device_state + 1)]);
             setRfTxKanchenjunga(rftxPower[foundKanchenjunga[0].device_requested_tx_power]);
           }
 
           var foundK_51 = getStateData('204', stateData)
           if (foundK_51 != null && foundK_51 != undefined) {
-            setStatusK_51(deviceState[parseInt(foundK_51[0].device_state) + 1]);
+    //        setStatusK_51(deviceState[parseInt(foundK_51[0].device_state) + 1]);
             setRfTxK_51(rftxPower[foundK_51[0].device_requested_tx_power]);
           }
 
           var foundDhawandeep = getStateData('197', stateData)
           if (foundDhawandeep != null && foundDhawandeep != undefined) {
-            setStatusDhawandeep(deviceState[parseInt(foundDhawandeep[0].device_state + 1)]);
+    //        setStatusDhawandeep(deviceState[parseInt(foundDhawandeep[0].device_state + 1)]);
             setRfTxDhawandeep(rftxPower[foundDhawandeep[0].device_requested_tx_power]);
           }
 
@@ -610,6 +719,24 @@ export default function EnhancedTable() {
            setRfDownTimeUpsc("Duration: " + dateStart.toLocaleDateString("en-US") + " " + dateStart.toLocaleTimeString("default") +" to "+ dateEnd.toLocaleDateString("en-US") + " " + dateEnd.toLocaleTimeString("default"));
 
            setTempUpsc(Math.floor(abc[0].system_stats_som_internal_temp))
+
+           ///////////////
+           const setLastUpdateTime = abc[0].timestamp; 
+           //setLastCheckedTime( new Date(Date.now() + 19800000).toISOString())
+           const setLastCheckedTimeUnix =  Date.now()
+           if(parseInt((setLastCheckedTimeUnix - (Date.parse((abc[0].timestamp))))) > 300000 ){
+             // setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]); 
+             //   const deviceState = ["Down", "Provisioned", "Init", "Config", "UP"]
+
+           //  setBrhStatus("danger")
+           setStatusUpsc(deviceState[1]);
+           } else{
+             //  setBrhStatus("success")
+             setStatusUpsc(deviceState[4]);
+           }
+
+///////////////////
+
         }
       }
       });
@@ -638,7 +765,25 @@ export default function EnhancedTable() {
            setRfDownTimeShangrila("Duration: " + dateStart.toLocaleDateString("en-US") + " " + dateStart.toLocaleTimeString("default") +" to "+ dateEnd.toLocaleDateString("en-US") + " " + dateEnd.toLocaleTimeString("default"));
 
            setTempShangrila(Math.floor(abc[0].system_stats_som_internal_temp))
-        }
+
+///////////////
+            const setLastUpdateTime = abc[0].timestamp; 
+            //setLastCheckedTime( new Date(Date.now() + 19800000).toISOString())
+            const setLastCheckedTimeUnix =  Date.now()
+            if(parseInt((setLastCheckedTimeUnix - (Date.parse((abc[0].timestamp))))) > 300000 ){
+              // setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]); 
+              //   const deviceState = ["Down", "Provisioned", "Init", "Config", "UP"]
+ 
+            //  setBrhStatus("danger")
+              setStatusShangrila(deviceState[1]);
+            } else{
+              //  setBrhStatus("success")
+              setStatusShangrila(deviceState[4]);
+            }
+
+///////////////////
+
+}
       }
       });
       xhr3.open("GET", "http://174.138.120.85:3008/3");
@@ -668,6 +813,24 @@ export default function EnhancedTable() {
            setRfDownTimeDhawandeep("Duration: " + dateStart.toLocaleDateString("en-US") + " " + dateStart.toLocaleTimeString("default") +" to "+ dateEnd.toLocaleDateString("en-US") + " " + dateEnd.toLocaleTimeString("default"));
 
            setTempDhawandeep(Math.floor(abc[0].system_stats_som_internal_temp))
+
+           ///////////////
+           const setLastUpdateTime = abc[0].timestamp; 
+           //setLastCheckedTime( new Date(Date.now() + 19800000).toISOString())
+           const setLastCheckedTimeUnix =  Date.now()
+           if(parseInt((setLastCheckedTimeUnix - (Date.parse((abc[0].timestamp))))) > 300000 ){
+             // setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]); 
+             //   const deviceState = ["Down", "Provisioned", "Init", "Config", "UP"]
+
+           //  setBrhStatus("danger")
+           setStatusDhawandeep(deviceState[1]);
+           } else{
+             //  setBrhStatus("success")
+             setStatusDhawandeep(deviceState[4]);
+           }
+
+///////////////////
+
         }
       }
       });
@@ -697,6 +860,25 @@ export default function EnhancedTable() {
            setRfDownTimeK_51("Duration: " + dateStart.toLocaleDateString("en-US") + " " + dateStart.toLocaleTimeString("default") +" to "+ dateEnd.toLocaleDateString("en-US") + " " + dateEnd.toLocaleTimeString("default"));
 
            setTempK_51(Math.floor(abc[0].system_stats_som_internal_temp))
+
+           
+           ///////////////
+           const setLastUpdateTime = abc[0].timestamp; 
+           //setLastCheckedTime( new Date(Date.now() + 19800000).toISOString())
+           const setLastCheckedTimeUnix =  Date.now()
+           if(parseInt((setLastCheckedTimeUnix - (Date.parse((abc[0].timestamp))))) > 300000 ){
+             // setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]); 
+             //   const deviceState = ["Down", "Provisioned", "Init", "Config", "UP"]
+
+           //  setBrhStatus("danger")
+           setStatusK_51(deviceState[1]);
+           } else{
+             //  setBrhStatus("success")
+             setStatusK_51(deviceState[4]);
+           }
+
+///////////////////
+
         }
       }
       });
@@ -726,6 +908,26 @@ export default function EnhancedTable() {
            setRfDownTimeKanchenjunga("Duration: " + dateStart.toLocaleDateString("en-US") + " " + dateStart.toLocaleTimeString("default") +" to "+ dateEnd.toLocaleDateString("en-US") + " " + dateEnd.toLocaleTimeString("default"));
 
            setTempKanchenjunga(Math.floor(abc[0].system_stats_som_internal_temp))
+
+           ////////////////////
+
+
+           const setLastUpdateTime = abc[0].timestamp; 
+           //setLastCheckedTime( new Date(Date.now() + 19800000).toISOString())
+           const setLastCheckedTimeUnix =  Date.now()
+           if(parseInt((setLastCheckedTimeUnix - (Date.parse((abc[0].timestamp))))) > 300000 ){
+             // setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]); 
+             //   const deviceState = ["Down", "Provisioned", "Init", "Config", "UP"]
+
+           //  setBrhStatus("danger")
+           setStatusKanchenjunga(deviceState[1]);
+           } else{
+             //  setBrhStatus("success")
+            setStatusKanchenjunga(deviceState[4]);
+           }
+
+           ///////////////////
+
         }
       }
       });
@@ -754,6 +956,26 @@ export default function EnhancedTable() {
            setRfDownTimeUco("Duration: " + dateStart.toLocaleDateString("en-US") + " " + dateStart.toLocaleTimeString("default") +" to "+ dateEnd.toLocaleDateString("en-US") + " " + dateEnd.toLocaleTimeString("default"));
 
            setTempUco(Math.floor(abc[0].system_stats_som_internal_temp))
+
+                      ////////////////////
+
+
+                      const setLastUpdateTime = abc[0].timestamp; 
+                      //setLastCheckedTime( new Date(Date.now() + 19800000).toISOString())
+                      const setLastCheckedTimeUnix =  Date.now()
+                      if(parseInt((setLastCheckedTimeUnix - (Date.parse((abc[0].timestamp))))) > 300000 ){
+                        // setStatusShangrila(deviceState[parseInt(foundShangrila[0].device_state + 1)]); 
+                        //   const deviceState = ["Down", "Provisioned", "Init", "Config", "UP"]
+           
+                      //  setBrhStatus("danger")
+                      setStatusUco(deviceState[1]);
+                      } else{
+                        //  setBrhStatus("success")
+                        setStatusUco(deviceState[4]);
+                      }
+           
+                      ///////////////////
+
         }
       }
       });
