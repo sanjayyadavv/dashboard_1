@@ -145,8 +145,20 @@ var data = JSON.stringify({
             setPlp2Status(abc[0].subframe0_plp2_active)
             setPlp3Status(abc[0].subframe0_plp3_active)
 
-            setSysUpTime(abc[0].system_stats_system_uptime)
-            setSysRunTime(abc[0].system_stats_active_running_time)
+            let seconds_up = abc[0].system_stats_system_uptime;
+            const hours_up = parseInt( seconds_up / 3600 );
+            seconds_up = seconds_up % 3600;
+            const minutes_up = parseInt( seconds_up / 60 );
+            seconds_up = seconds_up % 60;
+
+            let seconds_run = abc[0].system_stats_active_running_time;
+            const hours_run = parseInt( seconds_run / 3600 );
+            seconds_run = seconds_run % 3600;
+            const minutes_run = parseInt( seconds_run / 60 );
+            seconds_run = seconds_run % 60;
+
+            setSysUpTime(hours_up+":"+minutes_up+":"+seconds_up)
+            setSysRunTime(hours_run+":"+minutes_run+":"+seconds_run)
 
         }
     }
