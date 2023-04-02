@@ -256,8 +256,8 @@ xhr.send();
         backgroundColor: (context: ScriptableContext<"line">) => {
           const ctx = context.chart.ctx;
           const gradient = ctx.createLinearGradient(0, 0, 0, 200);
-          gradient.addColorStop(0.5, "rgba(53,174,50,1)");
-          gradient.addColorStop(1, "rgba(53,174,50,0)");
+          gradient.addColorStop(0.5, "rgba( 52, 202, 250  ,1)");
+          gradient.addColorStop(1, "rgba(  52, 202, 250  ,0)");
           return gradient;
         },
         borderColor: "rgb(53, 162, 235)",
