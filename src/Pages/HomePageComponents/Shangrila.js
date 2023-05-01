@@ -146,19 +146,23 @@ var data = JSON.stringify({
             setPlp3Status(abc[0].subframe0_plp3_active)
 
             let seconds_up = abc[0].system_stats_system_uptime;
+            const days_up = parseInt (seconds_up / (3600*24));
+            seconds_up = seconds_up % (3600*24);
             const hours_up = parseInt( seconds_up / 3600 );
             seconds_up = seconds_up % 3600;
             const minutes_up = parseInt( seconds_up / 60 );
             seconds_up = seconds_up % 60;
 
             let seconds_run = abc[0].system_stats_active_running_time;
+            const days_run = parseInt (seconds_up / (3600*24));
+            seconds_up = seconds_up % (3600*24);
             const hours_run = parseInt( seconds_run / 3600 );
             seconds_run = seconds_run % 3600;
             const minutes_run = parseInt( seconds_run / 60 );
             seconds_run = seconds_run % 60;
 
-            setSysUpTime(hours_up+":"+minutes_up+":"+seconds_up)
-            setSysRunTime(hours_run+":"+minutes_run+":"+seconds_run)
+            setSysUpTime(""+days_up+" Days "+hours_up+":"+minutes_up+":"+seconds_up)
+            setSysRunTime(" "+days_run+" Days "+hours_run+":"+minutes_run+":"+seconds_run)
 
         }
     }
@@ -349,13 +353,10 @@ xhr.send();
               <CardText>
                     <Row>
                     <Col>
-                    <Button size="sm" disabled>SW Ver: {swVersion}</Button>
+                    <Button size="sm" disabled color={gpsLock? "success" : "danger"}>GPS: {gpsLock? "Locked": "Unlocked"}</Button>
                     </Col>
                     <Col>
-                    <Button size="sm" disabled>GPS Lock: {gpsLock? "True": "False"}</Button>
-                    </Col>
-                    <Col>
-                    <Button size="sm" disabled>PA Control: {paStatus? "True": "False"}</Button>
+                    <Button size="sm" disabled color={paStatus? "success" : "danger"}>RF: {paStatus? "Tx-On": "Tx-Off"}  </Button>
                     </Col>
                     </Row>
                     <pre></pre>
@@ -373,9 +374,7 @@ xhr.send();
                     </Row>
                     <pre></pre>
                     <Row>
-                    <Col>
-                    <Button size="sm" disabled>PLP 0: {plp0Status? "True": "False"} {"|"} PLP 1: {plp1Status? "True": "False"} {"|"} PLP 2: {plp2Status? "True": "False"} {"|"} PLP 3: {plp3Status? "True": "False"}</Button>
-                    </Col>
+                  
                     </Row>
                     <pre></pre>
                     <Row>

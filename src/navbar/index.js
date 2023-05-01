@@ -74,6 +74,12 @@ function Navbar_Menu(args) {
               <NavLink href="/home_page_1">Home</NavLink>
             </NavItem>
             <NavItem>
+              <NavLink href="/home_page_2">All Sites</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/home_page_3">Live Status</NavLink>
+            </NavItem>
+            {/* <NavItem>
               <NavLink href="/about">About</NavLink>
             </NavItem>
             <NavItem>
@@ -90,9 +96,11 @@ function Navbar_Menu(args) {
             </NavItem>
             <NavItem>
               <NavLink href="/home_page_1">Home Page 1</NavLink>
-            </NavItem>
+            </NavItem> */}
+            {/* <NavItem>
+              <NavLink href="/Gmap">Maps</NavLink>
+            </NavItem> */}
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
         </Collapse>
       </Navbar>
     </div>
