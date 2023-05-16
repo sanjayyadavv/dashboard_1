@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Line, Bar, Pie } from "react-chartjs-2";
 
+import { Map, Marker } from "pigeon-maps";
+import antenna_on from "./../Images/antenna_on.png";
+
 import {
   Container,
   Row,
@@ -35,155 +38,486 @@ import K_51 from "./HomePageComponents/K_51";
 import Kanchenjunga from "./HomePageComponents/Kanchenjunga";
 import Uco from "./HomePageComponents/Uco";
 import EnhancedTable from "./LandingPage/BrhTable";
+import { MyMap } from "./MyMap";
 
 const Home_Page_2 = () => {
-  //  ||||||||||||||||||||||||||||||||||||||||||| Bar chart start ||||||||||||||||||||||||||||||||||||||||||||||||||
+  //  ||||||||||||||||||||||||||||||||||||||||||| Map state start ||||||||||||||||||||||||||||||||||||||||||||||||||
 
-  const [number, setNumber] = useState([
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0,
-  ]);
-  const [number_2, setNumber_2] = useState([
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0,
-  ]);
+  const deviceState = ["Down", "Provisioned", "Init", "Config", "UP"];
 
-  const [yAxisDataFinal, setYAxisDataFinal] = useState([0, 0, 0]);
+  const [stateUco, setStateUco] = useState("red");
+  const [stateUpsc, setStateUpsc] = useState("red");
+  const [stateShangrila, setStateShangrila] = useState("red");
+  const [stateDhawandeep, setStateDhawandeep] = useState("red");
+  const [stateK51, setStateK51] = useState("red");
+  const [stateKanchenjunga, setStateKanchenjunga] = useState("red");
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const min = 7;
-      const max = 100;
-      const rand = min + Math.random() * (max - min);
-      const rand2 = min + Math.random() * (max - min * 4);
 
-      //   if (rand >= 30) {
-      //     setYAxisDataFinal([0, number[0], number[1]]);
-      //     const abc1 = number.shift();
-      //     const abc2 = number_2.shift();
-      //     number.push(Math.floor(rand));
-      //     number_2.push(1);
-      //     setNumber(number);
-      //   } else {
-      //     const abc1 = number.shift();
-      //     const abc2 = number_2.shift();
-      //     number.push(1);
-      //     number_2.push(Math.floor(rand));
-      //     setNumber_2(number_2);
-      //   }
+  // |||||||||||||||||||||||||||||||||||||||||||| Map State End   ||||||||||||||||||||||||||||||||||||||||||||||||||
 
-      setYAxisDataFinal([0, number[0], number[1]]);
-      const abc1 = number.shift();
-      number.push(Math.floor(rand));
-      setNumber(number);
-    }, 1000);
-    return () => clearInterval(interval);
+  // ||||||||||||||||||||||||||||||||||||||||||||| Map Live status On page laod start|||||||||||||||||||||||||||||||||||||||||||
+
+  React.useEffect(() => {
+
+
+    var xhr2 = new XMLHttpRequest();
+    xhr2.withCredentials = false;
+    xhr2.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        const abc = JSON.parse(this.responseText).reverse();
+        if (abc.length > 0) {
+          const setLastCheckedTimeUnix = Date.now();
+          if ( parseInt(setLastCheckedTimeUnix - Date.parse(abc[0].timestamp)) > 300000) {
+            setStateUpsc("red")
+          } else {
+            if (Math.floor(abc[0].system_stats_som_internal_temp) > 100) {
+              setStateUpsc("orange")
+
+            } else {
+              setStateUpsc("green")
+
+            }
+          }
+        }
+      }
+    });
+    xhr2.open("GET", "http://174.138.120.85:3008/2");
+    xhr2.send();
+
+    var xhr3 = new XMLHttpRequest();
+    xhr3.withCredentials = false;
+    xhr3.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        const abc = JSON.parse(this.responseText).reverse();
+        if (abc.length > 0) {
+          const setLastCheckedTimeUnix = Date.now();
+          if ( parseInt(setLastCheckedTimeUnix - Date.parse(abc[0].timestamp)) > 300000) {
+            setStateShangrila("red")
+          } else {
+            if (Math.floor(abc[0].system_stats_som_internal_temp) > 100) {
+              setStateShangrila("orange")
+
+            } else {
+              setStateShangrila("green")
+
+            }
+          }
+        }
+      }
+    });
+    xhr3.open("GET", "http://174.138.120.85:3008/3");
+    xhr3.send();
+
+    var xhr4 = new XMLHttpRequest();
+    xhr4.withCredentials = false;
+    xhr4.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        const abc = JSON.parse(this.responseText).reverse();
+        if (abc.length > 0) {
+          const setLastUpdateTime = abc[0].timestamp;
+          const setLastCheckedTimeUnix = Date.now();
+          if ( parseInt(setLastCheckedTimeUnix - Date.parse(abc[0].timestamp)) > 300000) {
+            setStateDhawandeep("red")
+          } else {
+            if (Math.floor(abc[0].system_stats_som_internal_temp) > 100) {
+              setStateDhawandeep("orange")
+
+            } else {
+              setStateDhawandeep("green")
+
+            }
+          }
+        }
+      }
+    });
+    xhr4.open("GET", "http://174.138.120.85:3008/4");
+    xhr4.send();
+
+    var xhr5 = new XMLHttpRequest();
+    xhr5.withCredentials = false;
+    xhr5.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        const abc = JSON.parse(this.responseText).reverse();
+        if (abc.length > 0) {
+          const setLastCheckedTimeUnix = Date.now();
+          if ( parseInt(setLastCheckedTimeUnix - Date.parse(abc[0].timestamp)) > 300000) {
+            setStateK51("red")
+          } else {
+            if (Math.floor(abc[0].system_stats_som_internal_temp) > 100) {
+              setStateK51("orange")
+
+            } else {
+              setStateK51("green")
+
+            }
+          }
+        }
+      }
+    });
+    xhr5.open("GET", "http://174.138.120.85:3008/5");
+    xhr5.send();
+
+    var xhr6 = new XMLHttpRequest();
+    xhr6.withCredentials = false;
+    xhr6.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        const abc = JSON.parse(this.responseText).reverse();
+        if (abc.length > 0) {
+
+          const setLastCheckedTimeUnix = Date.now();
+          if ( parseInt(setLastCheckedTimeUnix - Date.parse(abc[0].timestamp)) > 300000) {
+            setStateKanchenjunga("red")
+          } else {
+            if (Math.floor(abc[0].system_stats_som_internal_temp) > 100) {
+              setStateKanchenjunga("orange")
+            } else {
+              setStateKanchenjunga("green")
+            }
+          }
+        }
+      }
+    });
+    xhr6.open("GET", "http://174.138.120.85:3008/6");
+    xhr6.send();
+
+    var xhr7 = new XMLHttpRequest();
+    xhr7.withCredentials = false;
+    xhr7.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        const abc = JSON.parse(this.responseText).reverse();
+        if (abc.length > 0) {
+          const setLastCheckedTimeUnix =  Date.now()
+          if ( parseInt(setLastCheckedTimeUnix - Date.parse(abc[0].timestamp)) > 300000) {
+            setStateUco("red")
+          } else {
+            if (Math.floor(abc[0].system_stats_som_internal_temp) > 100) {
+              setStateUco("orange")
+            } else {
+              setStateUco("green")
+            }
+          }
+        }
+      }
+    });
+    xhr7.open("GET", "http://174.138.120.85:3008/7");
+    xhr7.send();
   }, []);
 
-  var data = {
-    labels: number,
+  // ||||||||||||||||||||||||||||||||||||||||||||| Map Live status On page laod end   |||||||||||||||||||||||||||||||||||||||||||
 
-    datasets: [
-      {
-        label: "Label",
-        fill: true,
-        backgroundColor: (context: ScriptableContext<"line">) => {
-          const ctx = context.chart.ctx;
-          const gradient = ctx.createLinearGradient(0, 0, 0, 200);
-          gradient.addColorStop(0, "rgba(53,174,50,1)");
-          gradient.addColorStop(1, "rgba(53,174,50,0)");
-          return gradient;
-        },
-        borderColor: "rgb(53, 162, 235)",
-        data: number,
-      },
-      {
-        type: "line",
-        fill: false,
-        borderColor: "rgb(240, 20, 35)",
-        data: [
-          45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-          45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-        ],
-      },
-    ],
+
+  // ||||||||||||||||||||||||||||||||||||||||||||| Map Live status update with timer start ||||||||||||||||||||||||||||||||||||||||
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+
+      var xhr2 = new XMLHttpRequest();
+      xhr2.withCredentials = false;
+      xhr2.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+          const abc = JSON.parse(this.responseText).reverse();
+          if (abc.length > 0) {
+            const setLastCheckedTimeUnix = Date.now();
+            if ( parseInt(setLastCheckedTimeUnix - Date.parse(abc[0].timestamp)) > 300000) {
+              setStateUpsc("red")
+            } else {
+              if (Math.floor(abc[0].system_stats_som_internal_temp) > 100) {
+                setStateUpsc("orange")
+  
+              } else {
+                setStateUpsc("green")
+  
+              }
+            }
+          }
+        }
+      });
+      xhr2.open("GET", "http://174.138.120.85:3008/2");
+      xhr2.send();
+  
+      var xhr3 = new XMLHttpRequest();
+      xhr3.withCredentials = false;
+      xhr3.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+          const abc = JSON.parse(this.responseText).reverse();
+          if (abc.length > 0) {
+            const setLastCheckedTimeUnix = Date.now();
+            if ( parseInt(setLastCheckedTimeUnix - Date.parse(abc[0].timestamp)) > 300000) {
+              setStateShangrila("red")
+            } else {
+              if (Math.floor(abc[0].system_stats_som_internal_temp) > 100) {
+                setStateShangrila("orange")
+  
+              } else {
+                setStateShangrila("green")
+  
+              }
+            }
+          }
+        }
+      });
+      xhr3.open("GET", "http://174.138.120.85:3008/3");
+      xhr3.send();
+  
+      var xhr4 = new XMLHttpRequest();
+      xhr4.withCredentials = false;
+      xhr4.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+          const abc = JSON.parse(this.responseText).reverse();
+          if (abc.length > 0) {
+            const setLastUpdateTime = abc[0].timestamp;
+            const setLastCheckedTimeUnix = Date.now();
+            if ( parseInt(setLastCheckedTimeUnix - Date.parse(abc[0].timestamp)) > 300000) {
+              setStateDhawandeep("red")
+            } else {
+              if (Math.floor(abc[0].system_stats_som_internal_temp) > 100) {
+                setStateDhawandeep("orange")
+  
+              } else {
+                setStateDhawandeep("green")
+  
+              }
+            }
+          }
+        }
+      });
+      xhr4.open("GET", "http://174.138.120.85:3008/4");
+      xhr4.send();
+  
+      var xhr5 = new XMLHttpRequest();
+      xhr5.withCredentials = false;
+      xhr5.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+          const abc = JSON.parse(this.responseText).reverse();
+          if (abc.length > 0) {
+            const setLastCheckedTimeUnix = Date.now();
+            if ( parseInt(setLastCheckedTimeUnix - Date.parse(abc[0].timestamp)) > 300000) {
+              setStateK51("red")
+            } else {
+              if (Math.floor(abc[0].system_stats_som_internal_temp) > 100) {
+                setStateK51("orange")
+  
+              } else {
+                setStateK51("green")
+  
+              }
+            }
+          }
+        }
+      });
+      xhr5.open("GET", "http://174.138.120.85:3008/5");
+      xhr5.send();
+  
+      var xhr6 = new XMLHttpRequest();
+      xhr6.withCredentials = false;
+      xhr6.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+          const abc = JSON.parse(this.responseText).reverse();
+          if (abc.length > 0) {
+  
+            const setLastCheckedTimeUnix = Date.now();
+            if ( parseInt(setLastCheckedTimeUnix - Date.parse(abc[0].timestamp)) > 300000) {
+              setStateKanchenjunga("red")
+            } else {
+              if (Math.floor(abc[0].system_stats_som_internal_temp) > 100) {
+                setStateKanchenjunga("orange")
+              } else {
+                setStateKanchenjunga("green")
+              }
+            }
+          }
+        }
+      });
+      xhr6.open("GET", "http://174.138.120.85:3008/6");
+      xhr6.send();
+  
+      var xhr7 = new XMLHttpRequest();
+      xhr7.withCredentials = false;
+      xhr7.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+          const abc = JSON.parse(this.responseText).reverse();
+          if (abc.length > 0) {
+            const setLastCheckedTimeUnix =  Date.now()
+            if ( parseInt(setLastCheckedTimeUnix - Date.parse(abc[0].timestamp)) > 300000) {
+              setStateUco("red")
+            } else {
+              if (Math.floor(abc[0].system_stats_som_internal_temp) > 100) {
+                setStateUco("orange")
+              } else {
+                setStateUco("green")
+              }
+            }
+          }
+        }
+      });
+      xhr7.open("GET", "http://174.138.120.85:3008/7");
+      xhr7.send();
+
+    }, 10000)
+    return () => clearInterval(interval);
+  }, [])
+
+  // ||||||||||||||||||||||||||||||||||||||||||||| map Live status update with timer end |||||||||||||||||||||||||||||||||||||||||
+
+  // |||||||||||||||||||||||||||||||||||||||||||| Map Start |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+  const [hue, setHue] = useState("green");
+  const [deviceName, setDeviceName] = useState("");
+  const color = `hsl(${hue % 360}deg 9% 70%)`;
+
+  const MouseOver = (e, index) => {
+    //window.alert("Mouse Over at :" + index);
   };
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      colors: {
-        enabled: true,
-      },
-      title: {
-        display: false,
-        text: "Bar Chart",
-      },
-    },
-    scales: {
-      x: {
-        display: false,
-      },
-      y: {
-        display: false,
-      },
-    },
-    radius: 0,
-    borderRadius: 50,
+  const MouseClick = (e, index) => {
+    //window.alert("Mouse Over at :" + index);
+    switch (index) {
+      case "UPSC_BHAVAN":
+        return setDeviceName("Site Name: Upsc");
+      case "SHANGRI_LA":
+        return setDeviceName("Site Name: Shangri La");
+
+      case "DHAWANDEEP":
+        return setDeviceName("Site Name: Dhawandeep");
+      case "K_51":
+        return setDeviceName("Site Name: K 51");
+
+      case "KANCHENJUNGA":
+        return setDeviceName("Site Name: Kanchenjunga");
+      case "UCO_BANK":
+        return setDeviceName("Site Name: Uco");
+      default:
+        return setDeviceName("...");
+    }
   };
 
-  //  ||||||||||||||||||||||||||||||||||||||||||| Bar chart end ||||||||||||||||||||||||||||||||||||||||||||||||||
-
-  //  ||||||||||||||||||||||||||||||||||||||||||| Pie/Dougnut chart start ||||||||||||||||||||||||||||||||||||||||||||||||||
-
-  const DoughnutConfig = {
-    type: "doughnut",
-    data: data,
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-  };
-
-  const DoughnutData = {
-    labels: ["Red", "Blue", "Yellow"],
-    datasets: [
-      {
-        label: "My First Dataset",
-        data: [300, 50, 100],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
-        hoverOffset: 4,
-      },
-    ],
-  };
-
-  //  ||||||||||||||||||||||||||||||||||||||||||| Pie/Dougnut chart end ||||||||||||||||||||||||||||||||||||||||||||||||||
+  //||||||||||||||||||||||||||||||||||||||||||||| Map End ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
   const divStyle = {
     // margin: '3px',
-   // border: '5px #e300de',
-    backgroundColor: " #e3e9de"
+    // border: '5px #e300de',
+    backgroundColor: " #e3e9de",
   };
 
   return (
     <Container style={divStyle}>
-      <Row ><><pre></pre><pre></pre></></Row>
-      <Row >
-        <Col class="shadow p-3 bg-white rounded">
-        <Container > <EnhancedTable/> </Container>
-        </Col>
+      <Row>
+        <>
+          <pre></pre>
+          <pre></pre>
+        </>
+      </Row>
 
-        </Row>
-      <Row ><><pre></pre><pre></pre></></Row>
+      <Row>
+        <Col>
+          {/* <MyMap style={{height: 1400}}/> */}
+
+          <Row>
+            <Col class="shadow p-3 mb-5 bg-white rounded">
+              <Map
+                height={500}
+                defaultCenter={[28.62092, 77.21824]}
+                defaultZoom={14}
+              >
+                {/* Upsc Bhavan */}
+                <Marker
+                  width={40}
+                  anchor={[28.60954, 77.2269]}
+                  color={stateUpsc}
+                  onClick={(e) => MouseClick(e, "UPSC_BHAVAN")}
+                />
+
+                {/* Shangri LA */}
+                <Marker
+                  width={40}
+                  anchor={[28.62092, 77.21824]}
+                  color={stateShangrila}
+                  onClick={(e) => MouseClick(e, "SHANGRI_LA")}
+                />
+
+                {/* Dhawandeep*/}
+                <Marker
+                  width={40}
+                  anchor={[28.62306, 77.215]}
+                  color={stateDhawandeep}
+                  onClick={(e) => MouseClick(e, "DHAWANDEEP")}
+                />
+
+                {/* K-51*/}
+                <Marker
+                  width={40}
+                  anchor={[28.635, 77.22028]}
+                  color={stateK51}
+                  onClick={(e) => MouseClick(e, "K_51")}
+                  // onMouseOver={(e) => MouseOver(e, "K_51")}
+                />
+
+                {/* Kanchenjunga*/}
+                <Marker
+                  width={40}
+                  anchor={[28.63, 77.22528]}
+                  color={stateKanchenjunga}
+                  onClick={(e) => MouseClick(e, "KANCHENJUNGA")}
+                />
+
+                {/* UCO Bank*/}
+                <Marker
+                  width={40}
+                  anchor={[28.6232528, 77.2094234]}
+                  color={stateUco}
+                  onClick={(e) => MouseClick(e, "UCO_BANK")}
+                />
+              </Map>
+            </Col>
+          </Row>
+
+          <Row>
+            <>
+              <pre></pre>
+              <pre></pre>
+            </>
+          </Row>
+
+          <Row>
+            <Col class="shadow p-3 mb-5 bg-white rounded">
+              <Form className="text-center">
+                <Input
+                  type="email"
+                  name="email"
+                  id="exampleEmail"
+                  placeholder={deviceName}
+                  disabled
+                />
+              </Form>
+            </Col>
+            <Col class="shadow p-3 mb-5 bg-white rounded"></Col>
+            <Col class="shadow p-3 mb-5 bg-white rounded"></Col>
+          </Row>
+          <Row>
+            <>
+              <pre></pre>
+              <pre></pre>
+            </>
+          </Row>
+        </Col>
+        <>
+          <pre></pre>
+          <pre></pre>
+        </>
+      </Row>
+      <Row>
+        <Col class="shadow p-3 bg-white rounded">
+          <Container>
+            {" "}
+            <EnhancedTable />{" "}
+          </Container>
+        </Col>
+      </Row>
+      <Row>
+        <>
+          <pre></pre>
+          <pre></pre>
+        </>
+      </Row>
     </Container>
   );
 };
